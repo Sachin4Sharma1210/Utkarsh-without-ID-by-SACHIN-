@@ -186,7 +186,9 @@ def _extract_sync(mobile, password, batch_id):
                 fi = i.get("id")
                 tn = i.get("title", "Unknown").strip()
                 binfo = i.get("segment_information", "")
-                fn = f"{fi}_{tn.replace('/','_').replace(':','_').replace('|','_').replace('\\','_')}.txt"
+                clean_tn = tn.replace('/','_').replace(':','_').replace('|','_').replace('\\','_')
+fn = f"{fi}_{clean_tn}.txt"
+
                 with open(fn, "w", encoding="utf-8") as f:
                     f.write(f"{fi} ♧ {tn}\n{binfo}\n\n")
                     d5 = {"course_id": fi, "layer": 1, "page": 1, "parent_id": fi, "revert_api": "1#1#0#1", "tile_id": "0", "type": "content"}
